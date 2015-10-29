@@ -1,7 +1,8 @@
-package br.com.ieb.posgraduacao.empregadafacil;
+package br.com.iesb.posgraduacao.activity;
 
-import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.support.v7.app.AppCompatActivity;
+import br.com.ieb.posgraduacao.activity.R;
 
 public class CalculaDecimoTerceiroActivity extends AppCompatActivity {
 
