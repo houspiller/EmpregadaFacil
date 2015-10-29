@@ -17,6 +17,8 @@
         </activity>
         <activity android:name=".CalculaSalarioActivity" >
         </activity>
+        <activity android:name=".CalculaDecimoTerceiroActivity" >
+        </activity>
     </application>
 
 </manifest>

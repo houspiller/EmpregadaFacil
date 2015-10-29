@@ -19,4 +19,9 @@ public class MainActivity extends AppCompatActivity {
         Intent intentGoCalculaSalarioActivity = new Intent(this, CalculaSalarioActivity.class);
         startActivity(intentGoCalculaSalarioActivity);
     }
+
+    public void irCalculaDecimoTerceiroActivity(View view){
+        Intent intentGoCalculaDecimoTerceiroActivity = new Intent(this, CalculaDecimoTerceiroActivity.class);
+        startActivity(intentGoCalculaDecimoTerceiroActivity);
+    }
 }
