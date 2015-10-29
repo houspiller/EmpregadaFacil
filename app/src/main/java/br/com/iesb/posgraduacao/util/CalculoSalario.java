@@ -1,5 +1,6 @@
 package br.com.iesb.posgraduacao.util;
 
+import java.text.DecimalFormat;
 public class CalculoSalario {
     //Constantes
     public static char EMPREGADO = 'E';
@@ -7,11 +8,13 @@ public class CalculoSalario {
     public static char FIMDESEMANA = 'F';
     public static char DURANTEASEMANA = 'S';
 
+    DecimalFormat df = new DecimalFormat("0.00");
+
     //Variáveis
 
     //Métodos
     //Verifica o valor do INSS do empregado ou do patrao
-    public float calcularINSS(char pagante, float salarioBruto) {
+    public String calcularINSS(char pagante, float salarioBruto) {
 
         float valorINSS = 0.0f;
 
@@ -33,21 +36,21 @@ public class CalculoSalario {
             valorINSS = salarioBruto * 0.12f;
         }
 
-        return valorINSS;
+        return df.format(valorINSS);
     }
 
     //Calculo o valor do FGTS que deve ser pago pelo Empregador
-    public float calcularFGTS(float salarioBruto) {
-        return salarioBruto * 0.08f;
+    public String calcularFGTS(float salarioBruto) {
+        return df.format(salarioBruto * 0.08f);
     }
 
     //Calculo o valor do Desconto que pode ser feito no salário do empregado para o vale transporte
-    public float calcularDescontoValeTransporte(float salarioBruto) {
-        return salarioBruto * 0.06f;
+    public String calcularDescontoValeTransporte(float salarioBruto) {
+        return df.format(salarioBruto * 0.06f);
     }
 
     //Calculo do valor a ser pago pelas horas extras totais de um empregado
-    public float calcularValorTotalHoraExtra(float salarioBruto, int totalHoraExtra, char diaSemana) {
+    public String calcularValorTotalHoraExtra(float salarioBruto, int totalHoraExtra, char diaSemana) {
         float valorTotalHoraExtra = 0.0f;
 
         valorTotalHoraExtra = valorTotalHoraExtra / 220;
@@ -63,7 +66,16 @@ public class CalculoSalario {
                 break;
         }
 
-        return valorTotalHoraExtra;
+        return df.format(valorTotalHoraExtra);
+    }
 
+    public String calcularSalarioLiquido(float salariobruto) {
+
+        float valorSalarioLiquido;
+
+        valorSalarioLiquido = salariobruto - Float.parseFloat(calcularINSS(EMPREGADO, salariobruto));
+        valorSalarioLiquido -= Float.parseFloat(calcularDescontoValeTransporte(salariobruto));
+
+        return df.format(valorSalarioLiquido);
     }
 }

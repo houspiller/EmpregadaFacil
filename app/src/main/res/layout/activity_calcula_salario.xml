@@ -79,9 +79,9 @@
         android:hint="Ex: 4,00" />
 
     <Button
-        android:layout_width="353dp"
-        android:layout_height="wrap_content"
-        android:text="Calcula Salário"
-        android:id="@+id/bt_calcula_salario"
-        android:onClick="calculaSalarioClick" />
+            android:layout_width="353dp"
+            android:layout_height="wrap_content"
+            android:text="Calcula Salário"
+            android:id="@+id/bt_calcula_salario"
+            android:onClick="calculaSalarioClick"/>
 </LinearLayout>
