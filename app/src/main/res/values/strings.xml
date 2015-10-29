@@ -3,4 +3,18 @@
     <string name="title_activity_calcular13">Calcular13</string>
     <string name="title_activity_calcular_ferias">CalcularFeriasActivity</string>
     <string name="title_activity_calcular_recisao_contrato">CalcularRecisaoContratoActivity</string>
+    <string name="salario_bruto">Salário Bruto:</string>
+    <string name="salario_liquido">Salário Líquido: </string>
+    <string name="horas_extras">Horas Extras:</string>
+    <string name="vale_transporte">Vale Transporte</string>
+    <string name="quant_dias_vale">Quantidade de dias:</string>
+    <string name="valor_por_dia_vale">Valor por dia:</string>
+    <string name="inss_empregador">INSS (empregador): </string>
+    <string name="inss_empregado">INSS (empregado): </string>
+    <string name="fgts">FGTS: </string>
+    <string name="desc_vale">Desc. vale-transp: </string>
+    <string name="ano_referencia">Ano de Referência:</string>
+
+    .
+
 </resources>

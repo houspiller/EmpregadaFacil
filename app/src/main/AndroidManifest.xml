@@ -32,6 +32,8 @@
                 android:label="@string/title_activity_calcular_recisao_contrato"
                 android:theme="@style/AppTheme.NoActionBar">
         </activity>
+        <activity android:name=".CalculaDecimoTerceiroActivity" >
+        </activity>
     </application>
 
 </manifest>
