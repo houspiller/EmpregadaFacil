@@ -12,8 +12,8 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:textAppearance="?android:attr/textAppearanceLarge"
-        android:text="Large Text"
-        android:id="@+id/textView2" />
+        android:text="@string/salario_bruto"
+        android:id="@+id/tv_salario_bruto_13" />
 
     <EditText
         android:layout_width="wrap_content"
@@ -27,8 +27,8 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:textAppearance="?android:attr/textAppearanceLarge"
-        android:text="Large Text"
-        android:id="@+id/textView3" />
+        android:text="@string/ano_referencia"
+        android:id="@+id/tv_ano_13" />
 
     <Spinner
         android:layout_width="match_parent"
