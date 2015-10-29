@@ -1,4 +1,4 @@
-package br.com.ieb.posgraduacao.empregadafacil;
+package br.com.ieb.posgraduacao.activity;
 
 import android.app.Application;
 import android.test.ApplicationTestCase;
