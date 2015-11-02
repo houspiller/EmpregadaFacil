@@ -22,7 +22,15 @@
     <string name="nao">Não</string>
     <string name="adiantamento_13">Adiantar 1ª parcela do 13º?</string>
     <string name="calcular_ferias">Calcular férias</string>
-
-    .
+    <string name="resultado_valor_ferias">Valor férias:</string>
+    <string name="resultado_13_ferias">1/3 férias:</string>
+    <string name="resultado_13_abono_pecuniario">1/3 abono pecuniário:</string>
+    <string name="resultado_abono_pecuniario">Abono pecuniário:</string>
+    <string name="resultado_adiantamento_13">Adiantamento 13º:</string>
+    <string name="resultado_total_verbas">Total de verbas:</string>
+    <string name="resultado_inss">INSS:</string>
+    <string name="resultado_dependentes">Dependentes:</string>
+    <string name="resultado_ifpf">Imposto de renda (IRPF):</string>
+    <string name="resultado_total_descontos">Total de descontos:</string>
 
 </resources>
