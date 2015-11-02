@@ -8,12 +8,20 @@
     <string name="horas_extras">Horas Extras:</string>
     <string name="vale_transporte">Vale Transporte</string>
     <string name="quant_dias_vale">Quantidade de dias:</string>
+    <string name="dias_de_ferias">Dias de férias:</string>
     <string name="valor_por_dia_vale">Valor por dia:</string>
     <string name="inss_empregador">INSS (empregador):</string>
     <string name="inss_empregado">INSS (empregado):</string>
     <string name="fgts">FGTS:</string>
     <string name="desc_vale">Desc. vale-transp:</string>
     <string name="ano_referencia">Ano de Referência:</string>
+    <string name="vl_medio_horas_extras">Valor médio de horas extras no ano:</string>
+    <string name="dependentes">Dependentes:</string>
+    <string name="abono_pecuniario">Abono pecuniário (vender 1/3)?</string>
+    <string name="sim">Sim</string>
+    <string name="nao">Não</string>
+    <string name="adiantamento_13">Adiantar 1ª parcela do 13º?</string>
+    <string name="calcular_ferias">Calcular férias</string>
 
     .
 

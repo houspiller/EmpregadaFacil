@@ -1,35 +1,134 @@
 <?xml version="1.0" encoding="utf-8"?>
-<android.support.design.widget.CoordinatorLayout
-        xmlns:android="http://schemas.android.com/apk/res/android"
-        xmlns:app="http://schemas.android.com/apk/res-auto"
-        xmlns:tools="http://schemas.android.com/tools"
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:fitsSystemWindows="true"
-        tools:context="br.com.iesb.posgraduacao.activity.CalcularFeriasActivity">
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+              xmlns:tools="http://schemas.android.com/tools" android:layout_width="match_parent"
+              android:layout_height="match_parent" android:paddingLeft="@dimen/activity_horizontal_margin"
+              android:paddingRight="@dimen/activity_horizontal_margin"
+              android:paddingTop="@dimen/activity_vertical_margin"
+              android:paddingBottom="@dimen/activity_vertical_margin"
+              android:orientation="vertical"
+              tools:context="br.com.iesb.posgraduacao.activity.CalcularFeriasActivity">
 
-    <android.support.design.widget.AppBarLayout
-            android:layout_height="wrap_content"
-            android:layout_width="match_parent"
-            android:theme="@style/AppTheme.AppBarOverlay">
-
-        <android.support.v7.widget.Toolbar
-                android:id="@+id/toolbar"
-                android:layout_width="match_parent"
-                android:layout_height="?attr/actionBarSize"
-                android:background="?attr/colorPrimary"
-                app:popupTheme="@style/AppTheme.PopupOverlay"/>
-
-    </android.support.design.widget.AppBarLayout>
-
-    <include layout="@layout/content_calcular_ferias"/>
-
-    <android.support.design.widget.FloatingActionButton
-            android:id="@+id/fab"
+    <!--Salário Bruto-->
+    <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_gravity="bottom|end"
-            android:layout_margin="@dimen/fab_margin"
-            android:src="@android:drawable/ic_dialog_email"/>
+            android:textAppearance="?android:attr/textAppearanceLarge"
+            android:text="@string/salario_bruto"
+            android:id="@+id/tv_salario_bruto"
+            android:layout_column="0"
+            android:layout_marginTop="10dp"/>
 
-</android.support.design.widget.CoordinatorLayout>
+    <EditText
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:inputType="numberDecimal"
+            android:ems="10"
+            android:id="@+id/et_salario_bruto"
+            android:hint="Ex: 1500,00"/>
+
+    <!--Horas extras-->
+    <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textAppearance="?android:attr/textAppearanceLarge"
+            android:text="@string/vl_medio_horas_extras"
+            android:id="@+id/tv_horas_extras"/>
+
+    <EditText
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:inputType="number"
+            android:ems="10"
+            android:id="@+id/et_horas_extras"
+            android:hint="Ex: 8"/>
+
+    <!--Cálculo dependentes-->
+    <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textAppearance="?android:attr/textAppearanceLarge"
+            android:text="@string/dependentes"
+            android:id="@+id/tv_quantidade_dependente"
+            android:layout_marginTop="10dp"/>
+
+    <Spinner
+            android:layout_width="60dp"
+            android:layout_height="wrap_content"
+            android:id="@+id/spinner_dependentes"
+            android:layout_gravity="left"/>
+
+    <!-- Dias de férias -->
+    <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textAppearance="?android:attr/textAppearanceLarge"
+            android:text="@string/dias_de_ferias"
+            android:id="@+id/tv_quantidade_dias_ferias"
+            android:layout_marginTop="10dp"/>
+
+    <Spinner
+            android:layout_width="60dp"
+            android:layout_height="wrap_content"
+            android:id="@+id/spinner_dias_ferias"
+            android:layout_gravity="left"/>
+
+    <!-- Abono pecuniário -->
+    <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textAppearance="?android:attr/textAppearanceLarge"
+            android:text="@string/abono_pecuniario"
+            android:id="@+id/tv_abono_pecuniario"
+            android:layout_marginTop="10dp"/>
+
+    <RadioGroup xmlns:android="http://schemas.android.com/apk/res/android"
+                android:layout_width="fill_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal">
+
+        <RadioButton android:id="@+id/rb_abono_pecuniario_sim"
+                     android:layout_width="wrap_content"
+                     android:layout_height="wrap_content"
+                     android:text="@string/sim"/>
+
+        <RadioButton android:id="@+id/rb_abono_pecuniario_nao"
+                     android:layout_width="wrap_content"
+                     android:layout_height="wrap_content"
+                     android:text="@string/nao"
+                     android:checked="true"/>
+    </RadioGroup>
+
+    <!--Adiantamento 13º-->
+    <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textAppearance="?android:attr/textAppearanceLarge"
+            android:text="@string/adiantamento_13"
+            android:id="@+id/tv_adiantamento_13"
+            android:layout_marginTop="10dp"/>
+
+    <RadioGroup xmlns:android="http://schemas.android.com/apk/res/android"
+                android:layout_width="fill_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal">
+
+        <RadioButton android:id="@+id/rb_adiantamento_13_sim"
+                     android:layout_width="wrap_content"
+                     android:layout_height="wrap_content"
+                     android:text="@string/sim"/>
+
+        <RadioButton android:id="@+id/rb_adiantamento_13_nao"
+                     android:layout_width="wrap_content"
+                     android:layout_height="wrap_content"
+                     android:text="@string/nao"
+                     android:checked="true"/>
+    </RadioGroup>
+
+    <!--Botão Calcular -->
+    <Button
+            android:layout_width="353dp"
+            android:layout_height="wrap_content"
+            android:text="@string/calcular_ferias"
+            android:id="@+id/bt_calcula_ferias"
+            android:onClick="calculaFeriasClick"/>
+</LinearLayout>
