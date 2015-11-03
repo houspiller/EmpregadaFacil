@@ -1,36 +1,33 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
-          package="br.com.ieb.posgraduacao.activity">
+    package="br.com.ieb.posgraduacao.activity" >
 
     <application
-            android:allowBackup="true"
-            android:icon="@mipmap/ic_launcher"
-            android:label="@string/app_name"
-            android:supportsRtl="true"
-            android:theme="@style/AppTheme">
-        <activity android:name="br.com.iesb.posgraduacao.activity.MainActivity">
+        android:allowBackup="true"
+        android:icon="@mipmap/ic_launcher"
+        android:label="@string/app_name"
+        android:supportsRtl="true"
+        android:theme="@style/AppTheme" >
+        <activity android:name="br.com.iesb.posgraduacao.activity.MainActivity" >
             <intent-filter>
-                <action android:name="android.intent.action.MAIN"/>
+                <action android:name="android.intent.action.MAIN" />
 
-                <category android:name="android.intent.category.LAUNCHER"/>
+                <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity android:name="br.com.iesb.posgraduacao.activity.CalculaSalarioActivity">
+        <activity android:name="br.com.iesb.posgraduacao.activity.CalculaSalarioActivity" >
         </activity>
+        <!-- <activity -->
+        <!-- android:name="br.com.iesb.posgraduacao.activity.CalcularFeriasActivity" -->
+        <!-- android:label="@string/title_activity_calcular_ferias" -->
+        <!-- android:theme="@style/AppTheme.NoActionBar"> -->
+        <!-- </activity> -->
         <activity
-                android:name="br.com.iesb.posgraduacao.activity.Calcular13Activity"
-                android:label="@string/title_activity_calcular13"
-                android:theme="@style/AppTheme.NoActionBar">
+            android:name="br.com.iesb.posgraduacao.activity.CalcularRecisaoContratoActivity"
+            android:label="@string/title_activity_calcular_recisao_contrato"
+            android:theme="@style/AppTheme.NoActionBar" >
         </activity>
-        <!--<activity-->
-        <!--android:name="br.com.iesb.posgraduacao.activity.CalcularFeriasActivity"-->
-        <!--android:label="@string/title_activity_calcular_ferias"-->
-        <!--android:theme="@style/AppTheme.NoActionBar">-->
-        <!--</activity>-->
-        <activity
-                android:name="br.com.iesb.posgraduacao.activity.CalcularRecisaoContratoActivity"
-                android:label="@string/title_activity_calcular_recisao_contrato"
-                android:theme="@style/AppTheme.NoActionBar">
+        <activity android:name="br.com.iesb.posgraduacao.activity.Calcular13Activity" >
         </activity>
     </application>
 

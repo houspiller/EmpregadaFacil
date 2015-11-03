@@ -78,4 +78,14 @@ public class CalculoSalario {
 
         return df.format(valorSalarioLiquido);
     }
+
+    //Calculo da primeira parcela do 13
+    public String calcularPrimeiraParcela(float salarioBruto) {
+        return df.format(salarioBruto/2);
+    }
+
+    //Calculo da segunda parcela do 13
+    public String calcularSegundaParcela(float salarioBruto) {
+        return df.format((salarioBruto/2) - Float.parseFloat(calcularINSS(EMPREGADO, salarioBruto)));
+    }
 }

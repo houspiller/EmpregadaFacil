@@ -24,6 +24,9 @@
     <string name="calcular_ferias">Calcular férias</string>
     <string name="resultado_valor_ferias">Valor férias:</string>
     <string name="resultado_13_ferias">1/3 férias:</string>
+    <string name="valor_13">Valor do 13º salário:</string>
+    <string name="primeira_parcela_13">Primeira parcela:</string>
+    <string name="segunda_parcela_13">Segunda parcela :</string>
     <string name="resultado_13_abono_pecuniario">1/3 abono pecuniário:</string>
     <string name="resultado_abono_pecuniario">Abono pecuniário:</string>
     <string name="resultado_adiantamento_13">Adiantamento 13º:</string>
@@ -32,5 +35,7 @@
     <string name="resultado_dependentes">Dependentes:</string>
     <string name="resultado_ifpf">Imposto de renda (IRPF):</string>
     <string name="resultado_total_descontos">Total de descontos:</string>
+    <string name="meses_trabalhados">Meses Trabalhados:</string>
+    <string name="calcula_13">Calcula 13º</string>
 
 </resources>
