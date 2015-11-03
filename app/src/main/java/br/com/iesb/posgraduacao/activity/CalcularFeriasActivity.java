@@ -86,21 +86,26 @@ public class CalcularFeriasActivity extends AppCompatActivity {
         texto.append(" R$" + adiantamento13);
         texto.append("\n");
 
+        //        Descontos:
+//        INSS.......................................: R$144,00
+        texto.append("\n");
+        texto.append("Descontos:");
+        texto.append("\n");
+        texto.append(this.getString(R.string.resultado_inss));
+        double inss = calculoFerias.calcularDeducaoINSS(salarioBruto, valorFerias, _13Ferias);
+        texto.append(" R$" + inss);
+        texto.append("\n");
+
+//        Dependentes...........(Qtd)..0.....: R$ 0,00 (O valor da dedução mensal é R$ 189,59 por dependente)
+//        Imposto de renda (IRPF).............: R$ 0,00
+//        Total de descontos......................:R$ 144,00
+
 //        Total de verbas...........:R$ 1.600,00
         texto.append("\n");
         texto.append(this.getString(R.string.resultado_total_verbas));
         double totalVerbas = valorFerias + _13Ferias + abonoPecuniario + umTercoAbonoPecuniario + adiantamento13;
         texto.append(" R$" + totalVerbas);
         texto.append("\n");
-
-//
-//        Descontos:
-//        INSS.......................................: R$144,00
-
-//        Dependentes...........(Qtd)..0.....: R$ 0,00 (O valor da dedução mensal é R$ 189,59 por dependente)
-//        Imposto de renda (IRPF).............: R$ 0,00
-//        Total de descontos......................:R$ 144,00
-
         return texto.toString();
     }
 
