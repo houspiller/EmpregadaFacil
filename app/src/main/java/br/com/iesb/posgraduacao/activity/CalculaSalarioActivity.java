@@ -1,13 +1,18 @@
 package br.com.iesb.posgraduacao.activity;
 
 import android.app.AlertDialog;
+import android.content.ActivityNotFoundException;
 import android.content.DialogInterface;
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.view.View;
 import android.widget.EditText;
+import android.widget.Toast;
+
 import br.com.ieb.posgraduacao.activity.R;
 import br.com.iesb.posgraduacao.util.CalculoSalario;
+import br.com.iesb.posgraduacao.util.PDFOperations;
 
 public class CalculaSalarioActivity extends AppCompatActivity {
 
@@ -19,15 +24,29 @@ public class CalculaSalarioActivity extends AppCompatActivity {
 
     public void calculaSalarioClick(View view) {
 
-        final AlertDialog.Builder msgDialog = new AlertDialog.Builder(this);
+        final PDFOperations pdfo = new PDFOperations();
+
+        AlertDialog.Builder msgDialog = new AlertDialog.Builder(CalculaSalarioActivity.this);
         msgDialog.setTitle("Resultados");
         msgDialog.setMessage(formaTextoComResultados());
-        msgDialog.setNeutralButton("OK", new DialogInterface.OnClickListener() {
+
+        msgDialog.setPositiveButton("OK", new DialogInterface.OnClickListener() {
             @Override
-            public void onClick(DialogInterface dialogInterface, int i) {
-                dialogInterface.dismiss();
+            public void onClick(DialogInterface dialog, int which) {
+                dialog.dismiss();
             }
         });
+
+        //gerando o PDF
+        msgDialog.setNegativeButton("Gerar PDF", new DialogInterface.OnClickListener() {
+            @Override
+            public void onClick(DialogInterface dialog, int which) {
+                pdfo.write("salario", formaTextoComResultados());
+                lerPDFGerado();
+                dialog.dismiss();
+            }
+        });
+
         msgDialog.show();
     }
 
@@ -55,6 +74,19 @@ public class CalculaSalarioActivity extends AppCompatActivity {
         Texto.append(" R$" + calculosSalarioAux.calcularSalarioLiquido(Float.parseFloat(etSalarioBruto.getText().toString())) + "\n");
 
         return Texto.toString();
+    }
+
+
+    public void lerPDFGerado(){
+
+        final PDFOperations pdfo = new PDFOperations();
+        Intent intent = pdfo.openPDF("salario");
+
+        try {
+            startActivity(intent);
+        } catch (ActivityNotFoundException e) {
+            Toast.makeText(this, "No Application Available to View PDF", Toast.LENGTH_SHORT).show();
+        }
     }
 
 }

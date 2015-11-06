@@ -84,4 +84,5 @@
             android:text="Calcula Salário"
             android:id="@+id/bt_calcula_salario"
             android:onClick="calculaSalarioClick"/>
+
 </LinearLayout>
