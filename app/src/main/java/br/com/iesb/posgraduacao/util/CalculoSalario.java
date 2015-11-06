@@ -8,7 +8,9 @@ public class CalculoSalario {
     public static char FIMDESEMANA = 'F';
     public static char DURANTEASEMANA = 'S';
 
-    DecimalFormat df = new DecimalFormat("0.00");
+    //Modificado para , ou inves de . pois apesar de rodar no emulador, não rodava no celular real.
+    //Ver em: http://pt.stackoverflow.com/questions/20729/clique-em-bot%C3%A3o-funciona-no-emulador-mas-n%C3%A3o-funciona-no-celular
+    DecimalFormat df = new DecimalFormat("0,00");
 
     //Variáveis
 
