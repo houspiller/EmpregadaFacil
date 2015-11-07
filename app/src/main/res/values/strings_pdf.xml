@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <!--Decimo terceiro salário-->
+    <string name="titulo">Recibo 1ª parcela do 13º salário de </string>
+    <string name="dt_paragrafo_01">Recebi de __________________________________________________________________________________________ a importancia de R$</string>
+    <string name="dt_paragrafo_02"> referente ao pagamento da</string>
+    <string name="dt_primeira"> primeira</string>
+    <string name="dt_segunda"> segunda</string>
+    <string name="dt_paragrafo_03"> parcela do décimo terceiro de </string>
+    <string name="dt_paragrafo_04">, a saber:</string>
+    <string name="dt_obs">Os valores do INSS e IRPF sobre o décimo terceiro são descontados da segunda parcela.</string>
+
+    <!--Itens comuns-->
+    <string name="local_data">Local e data:____________________________________________________, ______de__________________________de________</string>
+    <string name="nome_empregado">Nome do empregado</string>
+    <string name="assinatura">Assinatura</string>
+    <string name="linha_assinatura">_________________________________________________</string>
+
+</resources>
