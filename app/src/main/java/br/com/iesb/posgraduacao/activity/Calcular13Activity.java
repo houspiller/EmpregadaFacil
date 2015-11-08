@@ -1,7 +1,9 @@
 package br.com.iesb.posgraduacao.activity;
 
 import android.app.AlertDialog;
+import android.content.ActivityNotFoundException;
 import android.content.DialogInterface;
+import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
@@ -10,6 +12,7 @@ import android.widget.Toast;
 
 import br.com.ieb.posgraduacao.activity.R;
 import br.com.iesb.posgraduacao.util.CalculoSalario;
+import br.com.iesb.posgraduacao.util.PDFOperations;
 
 
 public class Calcular13Activity extends AppCompatActivity {
@@ -50,9 +53,16 @@ public class Calcular13Activity extends AppCompatActivity {
                             @Override
                             public void onClick(DialogInterface dialog, int which) {
 
+                                PDFOperations pdfo = new PDFOperations();
+                                CalculoSalario calculosSalarioAux = new CalculoSalario();
+                                EditText etSalarioBruto = (EditText) findViewById(R.id.et_salario_bruto);
+
                                 switch (which) {
                                     case 0:
-                                        gerarPDF1Parcela();
+                                        pdfo.gerarPDFPrimeiraParcela("decterc",
+                                                calculosSalarioAux.calcularPrimeiraParcela(Float.parseFloat(etSalarioBruto.getText().toString())),
+                                                calculosSalarioAux.calcularSalarioBruto(Float.parseFloat(etSalarioBruto.getText().toString())));
+                                        lerPDFGerado();
                                         Toast.makeText(getBaseContext(), "Gerou 1ª Parcela", Toast.LENGTH_SHORT).show();
                                         break;
                                     case 1:
@@ -92,11 +102,19 @@ public class Calcular13Activity extends AppCompatActivity {
         return Texto.toString();
     }
 
-    public void gerarPDF1Parcela(){
+    public void gerarPDF2Parcela(){
         //TODO a fazer
     }
 
-    public void gerarPDF2Parcela(){
-        //TODO a fazer
+    public void lerPDFGerado(){
+
+        final PDFOperations pdfo = new PDFOperations();
+        Intent intent = pdfo.openPDF("decterc");
+
+        try {
+            startActivity(intent);
+        } catch (ActivityNotFoundException e) {
+            Toast.makeText(this, "No Application Available to View PDF", Toast.LENGTH_SHORT).show();
+        }
     }
 }

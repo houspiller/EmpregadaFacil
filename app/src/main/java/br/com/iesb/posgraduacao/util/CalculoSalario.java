@@ -90,4 +90,9 @@ public class CalculoSalario {
     public String calcularSegundaParcela(float salarioBruto) {
         return df.format((salarioBruto/2) - Float.parseFloat(calcularINSS(EMPREGADO, salarioBruto)));
     }
+
+    public String calcularSalarioBruto(float salarioBruto) {
+        return df.format(salarioBruto);
+    }
+
 }

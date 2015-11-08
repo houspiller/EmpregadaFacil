@@ -17,4 +17,10 @@ public class DateOperations {
         Date date = new Date();
         return dateFormat.format(date);
     }
+
+    public String atualAnoString(){
+        DateFormat dateFormat = new SimpleDateFormat("yyyy");
+        Date date = new Date();
+        return dateFormat.format(date);
+    }
 }
