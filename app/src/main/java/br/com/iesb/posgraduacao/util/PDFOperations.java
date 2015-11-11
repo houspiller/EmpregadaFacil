@@ -164,4 +164,86 @@ public class PDFOperations {
             return false;
         }
     }
+
+    //Copia da primeira com algumas alterações
+    public Boolean gerarPDFSegundaParcela(String fileName, String valorParcela, String salarioBase) {
+
+        //classe de operacoes com Data
+        DateOperations dop = new DateOperations();
+
+        try {
+            //O arquivo vai ser gravado no sdcard ou na pasta padrão raiz do celular
+            String fpath = "/sdcard/" + fileName + dop.atualDateString() + ".pdf";
+            File file = new File(fpath);
+            // If file does not exists, then create it
+            if (!file.exists()) {
+                file.createNewFile();
+            }
+
+            Document document = new Document();
+            PdfWriter.getInstance(document, new FileOutputStream(file.getAbsoluteFile()));
+            document.open();
+            document.addTitle("Segunda Parcela do 13º Salário");
+
+            Paragraph p0 =  new Paragraph("Recibo 2ª parcela do 13º salário de "
+                    + new DateOperations().atualAnoString());
+            p0.setAlignment(Element.ALIGN_CENTER);
+            Font fontbold = FontFactory.getFont(FontFactory.COURIER, 18, Font.BOLD);
+            p0.setFont(fontbold);
+
+            document.add(p0);
+            document.add(Chunk.NEWLINE);
+            document.add(Chunk.NEWLINE);
+
+            //Primeiro parágrafo
+            Paragraph p1 = new Paragraph("Recebi de _________________________________________________________________ a importância de R$"
+                    + valorParcela
+                    + " referente ao pagamento da segunda parcela do décimo terceiro de "
+                    + new DateOperations().atualAnoString()
+                    + ", a saber:");
+            p1.setAlignment(Element.ALIGN_JUSTIFIED);
+            document.add(p1);
+
+            document.add(Chunk.NEWLINE);
+
+            //lista
+            List list = new RomanList();
+            ListItem item1 = new ListItem("Total devido ao empregado: R$" + valorParcela);
+            ListItem item2 = new ListItem("Salário base: R$" + salarioBase);
+            ListItem item3 = new ListItem("Os valores do INSS e IRPF sobre o décimo terceiro são descontados da segunda parcela.");
+            ListItem item4 = new ListItem("Saldo do décimo terceiro: R$");
+
+            list.add(item1);
+            list.add(item2);
+            list.add(item3);
+            list.add(item4);
+            document.add(list);
+
+            document.add(Chunk.NEWLINE);
+            document.add(Chunk.NEWLINE);
+
+            //Local e data mais assinaturas
+            document.add(new Paragraph("Local e data: _________________________________, ____ de _________________________ de _______."));
+
+            document.add(Chunk.NEWLINE);
+            document.add(Chunk.NEWLINE);
+            document.add(Chunk.NEWLINE);
+
+            document.add(new Paragraph("____________________________________          ___________________________________"));
+            document.add(new Paragraph("                  Nome do empregado                                                           Assinatura"));
+
+
+            //fechando o documento.
+            document.close();
+
+            Log.d("Suceess", "Sucess");
+            return true;
+        } catch (IOException e) {
+            e.printStackTrace();
+            return false;
+        } catch (DocumentException e) {
+            e.printStackTrace();
+            return false;
+        }
+    }
 }
