@@ -62,11 +62,15 @@ public class Calcular13Activity extends AppCompatActivity {
                                         pdfo.gerarPDFPrimeiraParcela("decterc",
                                                 calculosSalarioAux.calcularPrimeiraParcela(Float.parseFloat(etSalarioBruto.getText().toString())),
                                                 calculosSalarioAux.calcularSalarioBruto(Float.parseFloat(etSalarioBruto.getText().toString())));
-                                        lerPDFGerado();
+                                        lerPDFGerado("decterc");
                                         Toast.makeText(getBaseContext(), "Gerou 1ª Parcela", Toast.LENGTH_SHORT).show();
                                         break;
                                     case 1:
-                                        gerarPDF2Parcela();
+                                        pdfo.gerarPDFSegundaParcela("dectercdois",
+                                                calculosSalarioAux.calcularSegundaParcela(Float.parseFloat(etSalarioBruto.getText().toString())),
+                                                calculosSalarioAux.calcularSalarioBruto(Float.parseFloat(etSalarioBruto.getText().toString())),
+                                                calculosSalarioAux.calcularINSS(calculosSalarioAux.EMPREGADO, Float.parseFloat(etSalarioBruto.getText().toString())));
+                                        lerPDFGerado("dectercdois");
                                         Toast.makeText(getBaseContext(), "Gerou 2ª Parcela", Toast.LENGTH_SHORT).show();
                                         break;
                                 }
@@ -102,14 +106,10 @@ public class Calcular13Activity extends AppCompatActivity {
         return Texto.toString();
     }
 
-    public void gerarPDF2Parcela(){
-        //TODO a fazer
-    }
-
-    public void lerPDFGerado(){
+    public void lerPDFGerado(String nomeSemData){
 
         final PDFOperations pdfo = new PDFOperations();
-        Intent intent = pdfo.openPDF("decterc");
+        Intent intent = pdfo.openPDF(nomeSemData);
 
         try {
             startActivity(intent);

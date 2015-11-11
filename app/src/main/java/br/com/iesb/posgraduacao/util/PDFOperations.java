@@ -166,7 +166,7 @@ public class PDFOperations {
     }
 
     //Copia da primeira com algumas alterações
-    public Boolean gerarPDFSegundaParcela(String fileName, String valorParcela, String salarioBase) {
+    public Boolean gerarPDFSegundaParcela(String fileName, String valorParcela, String salarioBase, String valorINSS) {
 
         //classe de operacoes com Data
         DateOperations dop = new DateOperations();
@@ -210,8 +210,8 @@ public class PDFOperations {
             List list = new RomanList();
             ListItem item1 = new ListItem("Total devido ao empregado: R$" + valorParcela);
             ListItem item2 = new ListItem("Salário base: R$" + salarioBase);
-            ListItem item3 = new ListItem("Os valores do INSS e IRPF sobre o décimo terceiro são descontados da segunda parcela.");
-            ListItem item4 = new ListItem("Saldo do décimo terceiro: R$");
+            ListItem item3 = new ListItem("Os valores do INSS sobre o décimo terceiro são descontados da segunda parcela.");
+            ListItem item4 = new ListItem("Valor do INSS pago: R$" + valorINSS);
 
             list.add(item1);
             list.add(item2);
