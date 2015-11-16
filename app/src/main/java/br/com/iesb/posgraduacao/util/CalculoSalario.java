@@ -76,7 +76,7 @@ public class CalculoSalario {
         float valorSalarioLiquido;
 
         valorSalarioLiquido = salariobruto - Float.parseFloat(calcularINSS(EMPREGADO, salariobruto).replace(",","."));
-        valorSalarioLiquido -= Float.parseFloat(calcularDescontoValeTransporte(salariobruto).replace(",","."));
+        valorSalarioLiquido -= Float.parseFloat(calcularDescontoValeTransporte(salariobruto).replace(",", "."));
 
         return df.format(valorSalarioLiquido);
     }
@@ -88,7 +88,7 @@ public class CalculoSalario {
 
     //Calculo da segunda parcela do 13
     public String calcularSegundaParcela(float salarioBruto) {
-        return df.format((salarioBruto/2) - Float.parseFloat(calcularINSS(EMPREGADO, salarioBruto)));
+        return df.format((salarioBruto/2) - Float.parseFloat(calcularINSS(EMPREGADO, salarioBruto).replace(",",".")));
     }
 
     public String calcularSalarioBruto(float salarioBruto) {
