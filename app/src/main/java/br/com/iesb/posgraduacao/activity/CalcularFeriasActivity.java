@@ -5,14 +5,16 @@ import android.content.DialogInterface;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.view.View;
-import android.widget.*;
+import android.widget.ArrayAdapter;
+import android.widget.EditText;
+import android.widget.RadioButton;
+import android.widget.Spinner;
 import br.com.ieb.posgraduacao.activity.R;
 import br.com.iesb.posgraduacao.control.CalculoFeriasController;
 
 import java.text.DecimalFormat;
 import java.text.NumberFormat;
 import java.util.ArrayList;
-import java.util.List;
 import java.util.Locale;
 
 public class CalcularFeriasActivity extends AppCompatActivity {
@@ -118,8 +120,6 @@ public class CalcularFeriasActivity extends AppCompatActivity {
         this.quantidadeDependentes = Integer.valueOf(String.valueOf(this.spinnerDependentes.getSelectedItem()));
         this.quantidadeDiasFerias = Integer.valueOf(String.valueOf(this.spinnerFerias.getSelectedItem()));
 
-        RadioGroup radioGroup = (RadioGroup) findViewById(R.id.radio_group_abono_pecuniario);
-
         this.abonoPecuniario = ((RadioButton) findViewById(R.id.rb_abono_pecuniario_sim)).isChecked() ? true : false;
         this.adiantar13 = ((RadioButton) findViewById(R.id.rb_adiantamento_13_sim)).isChecked() ? true : false;
     }
@@ -142,21 +142,8 @@ public class CalcularFeriasActivity extends AppCompatActivity {
 
     private void carregarSpinnerDependentes() {
         spinnerDependentes = (Spinner) findViewById(R.id.spinner_dependentes);
-        List<String> listDependente = new ArrayList<String>() {{
-            add("00");
-            add("01");
-            add("02");
-            add("03");
-            add("04");
-            add("05");
-            add("06");
-            add("07");
-            add("08");
-            add("09");
-            add("10");
-        }};
-
-        ArrayAdapter<String> adapterDependente = new ArrayAdapter<String>(this, android.R.layout.simple_spinner_item, listDependente);
+        ArrayAdapter<CharSequence> adapterDependente = ArrayAdapter.createFromResource(this, R.array.dependente_array, android.R.layout.simple_spinner_item);
+        adapterDependente.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
         this.spinnerDependentes.setAdapter(adapterDependente);
     }
 

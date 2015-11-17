@@ -4,6 +4,7 @@
     <string name="title_activity_calcular_ferias">CalcularFeriasActivity</string>
     <string name="title_activity_calcular_recisao_contrato">CalcularRecisaoContratoActivity</string>
     <string name="salario_bruto">Salário Bruto:</string>
+    <string name="ultimo_salario">Último Salário:</string>
     <string name="salario_liquido">Salário Líquido:</string>
     <string name="horas_extras">Horas Extras:</string>
     <string name="vale_transporte">Vale Transporte</string>
@@ -17,11 +18,17 @@
     <string name="ano_referencia">Ano de Referência:</string>
     <string name="vl_medio_horas_extras">Valor médio de horas extras no ano:</string>
     <string name="dependentes">Dependentes:</string>
+    <string name="data_inicio_contrato">Data de início do contrato de trabalho:</string>
+    <string name="data_termino_contrato">Data de término do contrato de trabalho:</string>
+    <string name="motivo_termino_contrato">Motivo do término de trabalho:</string>
     <string name="abono_pecuniario">Abono pecuniário (vender 1/3)?</string>
+    <string name="ferias_vencidas">Você possui férias vencidas?</string>
+    <string name="aviso_previo">Você cumpriu aviso prévio?</string>
     <string name="sim">Sim</string>
     <string name="nao">Não</string>
     <string name="adiantamento_13">Adiantar 1ª parcela do 13º?</string>
     <string name="calcular_ferias">Calcular férias</string>
+    <string name="calcular_recisao">Calcular recisão</string>
     <string name="resultado_valor_ferias">Valor férias:</string>
     <string name="resultado_13_ferias">1/3 férias:</string>
     <string name="valor_13">Valor do 13º salário:</string>
