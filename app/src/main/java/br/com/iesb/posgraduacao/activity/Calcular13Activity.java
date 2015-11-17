@@ -1,14 +1,18 @@
 package br.com.iesb.posgraduacao.activity;
 
 import android.app.AlertDialog;
+import android.content.ActivityNotFoundException;
 import android.content.DialogInterface;
+import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.EditText;
+import android.widget.Toast;
 
 import br.com.ieb.posgraduacao.activity.R;
 import br.com.iesb.posgraduacao.util.CalculoSalario;
+import br.com.iesb.posgraduacao.util.PDFOperations;
 
 
 public class Calcular13Activity extends AppCompatActivity {
@@ -22,15 +26,62 @@ public class Calcular13Activity extends AppCompatActivity {
     public void calcular13Salario(View view){
 
         final AlertDialog.Builder msgDialog = new AlertDialog.Builder(this);
+        //segundo dialog com as opções de 1ª e 2ª parcela
+        final AlertDialog.Builder msgDialog2 = new AlertDialog.Builder(this);
+
         msgDialog.setTitle("Resultados");
         msgDialog.setMessage(formaTextoComResultados());
-        msgDialog.setNeutralButton("OK", new DialogInterface.OnClickListener() {
+
+        //abre as informações com os resultados
+        msgDialog.setPositiveButton("OK", new DialogInterface.OnClickListener() {
             @Override
             public void onClick(DialogInterface dialogInterface, int i) {
                 dialogInterface.dismiss();
             }
         });
-        msgDialog.show();
+
+        //abre outra caixa de diálogo para a geracao dos recibos.
+        msgDialog.setNegativeButton("Gerar Recibo", new DialogInterface.OnClickListener() {
+            @Override
+            public void onClick(DialogInterface dialog, int which) {
+
+
+                msgDialog2.setTitle("Recibos");
+                msgDialog2.setItems(new CharSequence[]
+                                {"Gerar 1ª Parcela", "Gerar 2ª Parcela"},
+                        new DialogInterface.OnClickListener() {
+                            @Override
+                            public void onClick(DialogInterface dialog, int which) {
+
+                                PDFOperations pdfo = new PDFOperations();
+                                CalculoSalario calculosSalarioAux = new CalculoSalario();
+                                EditText etSalarioBruto = (EditText) findViewById(R.id.et_salario_bruto);
+
+                                switch (which) {
+                                    case 0:
+                                        pdfo.gerarPDFPrimeiraParcela("decterc",
+                                                calculosSalarioAux.calcularPrimeiraParcela(Float.parseFloat(etSalarioBruto.getText().toString())),
+                                                calculosSalarioAux.calcularSalarioBruto(Float.parseFloat(etSalarioBruto.getText().toString())));
+                                        lerPDFGerado("decterc");
+                                        Toast.makeText(getBaseContext(), "Gerou 1ª Parcela", Toast.LENGTH_SHORT).show();
+                                        break;
+                                    case 1:
+                                        pdfo.gerarPDFSegundaParcela("dectercdois",
+                                                calculosSalarioAux.calcularSegundaParcela(Float.parseFloat(etSalarioBruto.getText().toString())),
+                                                calculosSalarioAux.calcularSalarioBruto(Float.parseFloat(etSalarioBruto.getText().toString())),
+                                                calculosSalarioAux.calcularINSS(calculosSalarioAux.EMPREGADO, Float.parseFloat(etSalarioBruto.getText().toString())));
+                                        lerPDFGerado("dectercdois");
+                                        Toast.makeText(getBaseContext(), "Gerou 2ª Parcela", Toast.LENGTH_SHORT).show();
+                                        break;
+                                }
+
+                            }
+                        });
+                msgDialog2.create().show();
+            }
+        });
+
+                msgDialog.show();
     }
 
     //método que retorna o texto completo do relatório gerado
@@ -53,5 +104,17 @@ public class Calcular13Activity extends AppCompatActivity {
         Texto.append(" R$" + calculosSalarioAux.calcularINSS(CalculoSalario.EMPREGADO, Float.parseFloat(etSalarioBruto.getText().toString())) + "\n");
 
         return Texto.toString();
+    }
+
+    public void lerPDFGerado(String nomeSemData){
+
+        final PDFOperations pdfo = new PDFOperations();
+        Intent intent = pdfo.openPDF(nomeSemData);
+
+        try {
+            startActivity(intent);
+        } catch (ActivityNotFoundException e) {
+            Toast.makeText(this, "No Application Available to View PDF", Toast.LENGTH_SHORT).show();
+        }
     }
 }

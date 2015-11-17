@@ -8,7 +8,9 @@ public class CalculoSalario {
     public static char FIMDESEMANA = 'F';
     public static char DURANTEASEMANA = 'S';
 
-    DecimalFormat df = new DecimalFormat("0.00");
+    //Modificado para , ou inves de . pois apesar de rodar no emulador, não rodava no celular real.
+    //Ver em: http://pt.stackoverflow.com/questions/20729/clique-em-bot%C3%A3o-funciona-no-emulador-mas-n%C3%A3o-funciona-no-celular
+    DecimalFormat df = new DecimalFormat("#.00");
 
     //Variáveis
 
@@ -73,8 +75,8 @@ public class CalculoSalario {
 
         float valorSalarioLiquido;
 
-        valorSalarioLiquido = salariobruto - Float.parseFloat(calcularINSS(EMPREGADO, salariobruto));
-        valorSalarioLiquido -= Float.parseFloat(calcularDescontoValeTransporte(salariobruto));
+        valorSalarioLiquido = salariobruto - Float.parseFloat(calcularINSS(EMPREGADO, salariobruto).replace(",","."));
+        valorSalarioLiquido -= Float.parseFloat(calcularDescontoValeTransporte(salariobruto).replace(",", "."));
 
         return df.format(valorSalarioLiquido);
     }
@@ -86,6 +88,11 @@ public class CalculoSalario {
 
     //Calculo da segunda parcela do 13
     public String calcularSegundaParcela(float salarioBruto) {
-        return df.format((salarioBruto/2) - Float.parseFloat(calcularINSS(EMPREGADO, salarioBruto)));
+        return df.format((salarioBruto/2) - Float.parseFloat(calcularINSS(EMPREGADO, salarioBruto).replace(",",".")));
     }
+
+    public String calcularSalarioBruto(float salarioBruto) {
+        return df.format(salarioBruto);
+    }
+
 }
