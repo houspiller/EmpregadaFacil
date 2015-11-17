@@ -49,7 +49,7 @@ public class CalculaSalarioActivity extends AppCompatActivity {
                                         calculosSalarioAux.calcularDescontoValeTransporte(Float.parseFloat(etSalarioBruto.getText().toString())),
                                         calculosSalarioAux.calcularFGTS(Float.parseFloat(etSalarioBruto.getText().toString())),
                                         calculosSalarioAux.calcularSalarioLiquido(Float.parseFloat(etSalarioBruto.getText().toString())));
-                        lerPDFGerado();
+                        lerPDFGerado("salresum");
                 dialog.dismiss();
             }
         });
@@ -84,10 +84,10 @@ public class CalculaSalarioActivity extends AppCompatActivity {
     }
 
 
-    public void lerPDFGerado(){
+    public void lerPDFGerado(String nomeSemData){
 
         final PDFOperations pdfo = new PDFOperations();
-        Intent intent = pdfo.openPDF("salario");
+        Intent intent = pdfo.openPDF(nomeSemData);
 
         try {
             startActivity(intent);

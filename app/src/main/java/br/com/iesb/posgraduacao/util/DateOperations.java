@@ -18,6 +18,12 @@ public class DateOperations {
         return dateFormat.format(date);
     }
 
+    public String atualDateComBarraString(){
+        DateFormat dateFormat = new SimpleDateFormat("dd/MM/yyyy");
+        Date date = new Date();
+        return dateFormat.format(date);
+    }
+
     public String atualAnoString(){
         DateFormat dateFormat = new SimpleDateFormat("yyyy");
         Date date = new Date();

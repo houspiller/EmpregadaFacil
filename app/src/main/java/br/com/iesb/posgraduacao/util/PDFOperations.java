@@ -106,7 +106,7 @@ public class PDFOperations {
             document.addTitle("Relatório de Salário");
 
             Paragraph p0 =  new Paragraph("Relatório referente a data "
-                    + new DateOperations().atualDateString());
+                    + new DateOperations().atualDateComBarraString());
             p0.setAlignment(Element.ALIGN_CENTER);
             Font fontbold = FontFactory.getFont(FontFactory.COURIER, 18, Font.BOLD);
             p0.setFont(fontbold);
