@@ -41,8 +41,15 @@ public class CalculaSalarioActivity extends AppCompatActivity {
         msgDialog.setNegativeButton("Gerar PDF", new DialogInterface.OnClickListener() {
             @Override
             public void onClick(DialogInterface dialog, int which) {
-                pdfo.write("salario", formaTextoComResultados());
-                lerPDFGerado();
+                CalculoSalario calculosSalarioAux = new CalculoSalario();
+                EditText etSalarioBruto = (EditText) findViewById(R.id.et_salario_bruto);
+
+                pdfo.gerarPDFSalario("salresum", calculosSalarioAux.calcularINSS(CalculoSalario.EMPREGADOR, Float.parseFloat(etSalarioBruto.getText().toString())),
+                                        calculosSalarioAux.calcularINSS(CalculoSalario.EMPREGADO, Float.parseFloat(etSalarioBruto.getText().toString())),
+                                        calculosSalarioAux.calcularDescontoValeTransporte(Float.parseFloat(etSalarioBruto.getText().toString())),
+                                        calculosSalarioAux.calcularFGTS(Float.parseFloat(etSalarioBruto.getText().toString())),
+                                        calculosSalarioAux.calcularSalarioLiquido(Float.parseFloat(etSalarioBruto.getText().toString())));
+                        lerPDFGerado();
                 dialog.dismiss();
             }
         });
