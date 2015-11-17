@@ -11,14 +11,16 @@
         android:label="@string/app_name"
         android:supportsRtl="true"
         android:theme="@style/AppTheme" >
-        <activity android:name="br.com.iesb.posgraduacao.activity.MainActivity" >
+        <activity android:name="br.com.iesb.posgraduacao.activity.MainActivity"
+            android:screenOrientation="portrait">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity android:name="br.com.iesb.posgraduacao.activity.CalculaSalarioActivity" >
+        <activity android:name="br.com.iesb.posgraduacao.activity.CalculaSalarioActivity"
+            android:screenOrientation="portrait">
         </activity>
         <!-- <activity -->
         <!-- android:name="br.com.iesb.posgraduacao.activity.CalcularFeriasActivity" -->
@@ -30,7 +32,8 @@
             android:label="@string/title_activity_calcular_recisao_contrato"
             android:theme="@style/AppTheme.NoActionBar" >
         </activity>
-        <activity android:name="br.com.iesb.posgraduacao.activity.Calcular13Activity" >
+        <activity android:name="br.com.iesb.posgraduacao.activity.Calcular13Activity"
+            android:screenOrientation="portrait">
         </activity>
     </application>
 
