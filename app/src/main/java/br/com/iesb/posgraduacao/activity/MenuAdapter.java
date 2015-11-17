@@ -58,7 +58,6 @@ public class MenuAdapter extends BaseAdapter {
 
             @Override
             public void onClick(View v) {
-                Toast.makeText(context, "Click: " + menuNames[position], Toast.LENGTH_SHORT).show();
                 Intent intent = new Intent(context, Menu.getActivity(imageId[position]));
                 v.getContext().startActivity(intent);
             }
