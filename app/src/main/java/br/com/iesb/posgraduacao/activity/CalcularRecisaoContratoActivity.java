@@ -8,25 +8,27 @@ import android.util.Log;
 import android.view.View;
 import android.widget.*;
 import br.com.ieb.posgraduacao.activity.R;
+import br.com.iesb.posgraduacao.control.CalculoRecisaoController;
 
 import java.util.Calendar;
 
 public class CalcularRecisaoContratoActivity extends AppCompatActivity {
 
-    /**
-     * This integer will uniquely define the dialog to be used for displaying date picker.
-     */
-    private static final int DATE_DIALOG_ID = 0;
-    private TextView pDisplayDate;
+    private static final int DATA_INICIO_CONTRADO_ID = 0;
+    private static final int DATA_FIM_CONTRADO_ID = 1;
+    private TextView tvDataInicioContrato;
+    private TextView tvDataFimContrato;
     private DataInicioContrato dataInicioContrato;
+    private DataFimContrato dataFimContrato;
     private Spinner spMotivoTerminoContrato;
     private TextView tvPossuiFeriasVencidas;
     private TextView tvCumpriuAvisoPrevio;
     private RadioGroup rgPossuiFeriasVencidas;
     private RadioGroup rgCumpriuAvisoPrevio;
     private Spinner spinnerDependentes;
+    private CalculoRecisaoController controller;
 
-    private DatePickerDialog.OnDateSetListener pDateSetListener =
+    private DatePickerDialog.OnDateSetListener pDataInicioContratoListener =
             new DatePickerDialog.OnDateSetListener() {
 
                 public void onDateSet(DatePicker view, int year,
@@ -34,7 +36,27 @@ public class CalcularRecisaoContratoActivity extends AppCompatActivity {
                     dataInicioContrato.ano = year;
                     dataInicioContrato.mes = monthOfYear;
                     dataInicioContrato.dia = dayOfMonth;
-                    updateDisplay();
+                    tvDataInicioContrato.setText(new StringBuilder()
+                            // O mês é baseado em 0, então adiciono + 1
+                            .append(dataInicioContrato.dia).append("/")
+                            .append(dataInicioContrato.mes + 1).append("/")
+                            .append(dataInicioContrato.ano).append(" "));
+                }
+            };
+
+    private DatePickerDialog.OnDateSetListener pDataFimContratoListener =
+            new DatePickerDialog.OnDateSetListener() {
+
+                public void onDateSet(DatePicker view, int year,
+                                      int monthOfYear, int dayOfMonth) {
+                    dataFimContrato.ano = year;
+                    dataFimContrato.mes = monthOfYear;
+                    dataFimContrato.dia = dayOfMonth;
+                    tvDataFimContrato.setText(new StringBuilder()
+                            // O mês é baseado em 0, então adiciono + 1
+                            .append(dataFimContrato.dia).append("/")
+                            .append(dataFimContrato.mes + 1).append("/")
+                            .append(dataFimContrato.ano).append(" "));
                 }
             };
 
@@ -91,8 +113,10 @@ public class CalcularRecisaoContratoActivity extends AppCompatActivity {
 
                     case 2:
                         Log.d("Spinner", "Dispensa com justa causa");
-                        tvPossuiFeriasVencidas.setVisibility(View.GONE);
-                        rgPossuiFeriasVencidas.setVisibility(View.GONE);
+                        tvPossuiFeriasVencidas.setVisibility(View.VISIBLE);
+                        rgPossuiFeriasVencidas.setVisibility(View.VISIBLE);
+                        tvCumpriuAvisoPrevio.setVisibility(View.GONE);
+                        rgCumpriuAvisoPrevio.setVisibility(View.GONE);
                         break;
 
                     case 3:
@@ -104,7 +128,6 @@ public class CalcularRecisaoContratoActivity extends AppCompatActivity {
                         break;
 
                     default:
-                        Log.d("Spinner", "Default value!");
                         break;
                 }
             }
@@ -117,14 +140,15 @@ public class CalcularRecisaoContratoActivity extends AppCompatActivity {
 
     private void inicializarDatas() {
         inicializarDataInicioContrato();
+        inicializarDataFimContrato();
     }
 
     private void inicializarDataInicioContrato() {
         dataInicioContrato = new DataInicioContrato();
-        pDisplayDate = (TextView) findViewById(R.id.tv_data_inicio_contrato);
-        pDisplayDate.setOnClickListener(new View.OnClickListener() {
+        tvDataInicioContrato = (TextView) findViewById(R.id.tv_data_inicio_contrato);
+        tvDataInicioContrato.setOnClickListener(new View.OnClickListener() {
             public void onClick(View v) {
-                showDialog(DATE_DIALOG_ID);
+                showDialog(DATA_INICIO_CONTRADO_ID);
             }
         });
 
@@ -134,20 +158,43 @@ public class CalcularRecisaoContratoActivity extends AppCompatActivity {
         dataInicioContrato.mes = cal.get(Calendar.MONTH);
         dataInicioContrato.dia = cal.get(Calendar.DAY_OF_MONTH);
 
-        /** Atualiza a data no textview*/
-        updateDisplay();
+        atualizarCampoDataInicioContrato();
     }
 
-    /**
-     * Updates the date in the TextView
-     */
-    private void updateDisplay() {
-        pDisplayDate.setText(
+    private void inicializarDataFimContrato() {
+        dataFimContrato = new DataFimContrato();
+        tvDataFimContrato = (TextView) findViewById(R.id.tv_data_termino_contrato);
+        tvDataFimContrato.setOnClickListener(new View.OnClickListener() {
+            public void onClick(View v) {
+                showDialog(DATA_FIM_CONTRADO_ID);
+            }
+        });
+
+        /** Obtém a data atual*/
+        final Calendar cal = Calendar.getInstance();
+        dataFimContrato.ano = cal.get(Calendar.YEAR);
+        dataFimContrato.mes = cal.get(Calendar.MONTH);
+        dataFimContrato.dia = cal.get(Calendar.DAY_OF_MONTH);
+
+        atualizarCampoDataFimContrato();
+    }
+
+    private void atualizarCampoDataInicioContrato() {
+        tvDataInicioContrato.setText(
                 new StringBuilder()
                         // O mês é baseado em 0, então adiciono + 1
                         .append(dataInicioContrato.dia).append("/")
                         .append(dataInicioContrato.mes + 1).append("/")
                         .append(dataInicioContrato.ano).append(" "));
+    }
+
+    private void atualizarCampoDataFimContrato() {
+        tvDataFimContrato.setText(
+                new StringBuilder()
+                        // O mês é baseado em 0, então adiciono + 1
+                        .append(dataFimContrato.dia).append("/")
+                        .append(dataFimContrato.mes + 1).append("/")
+                        .append(dataFimContrato.ano).append(" "));
     }
 
     /**
@@ -156,10 +203,13 @@ public class CalcularRecisaoContratoActivity extends AppCompatActivity {
     @Override
     protected Dialog onCreateDialog(int id) {
         switch (id) {
-            case DATE_DIALOG_ID:
-                return new DatePickerDialog(this,
-                        pDateSetListener,
+            case DATA_INICIO_CONTRADO_ID:
+                return new DatePickerDialog(this, pDataInicioContratoListener,
                         dataInicioContrato.ano, dataInicioContrato.mes, dataInicioContrato.dia);
+
+            case DATA_FIM_CONTRADO_ID:
+                return new DatePickerDialog(this, pDataFimContratoListener,
+                        dataFimContrato.ano, dataFimContrato.mes, dataFimContrato.dia);
         }
         return null;
     }
@@ -170,4 +220,9 @@ public class CalcularRecisaoContratoActivity extends AppCompatActivity {
         int ano;
     }
 
+    public class DataFimContrato {
+        int dia;
+        int mes;
+        int ano;
+    }
 }

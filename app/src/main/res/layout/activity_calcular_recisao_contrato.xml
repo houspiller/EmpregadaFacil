@@ -76,8 +76,7 @@
             android:id="@+id/tv_data_termino_contrato"
             android:layout_width="fill_parent"
             android:layout_height="wrap_content"
-            android:textSize="14sp"
-            android:hint="dia/mes/ano"/>
+            android:textSize="14sp"/>
 
     <!-- Motivo do término de trabalho-->
     <TextView
@@ -90,7 +89,7 @@
             android:textSize="14sp"/>
 
     <Spinner
-            android:layout_width="100dp"
+            android:layout_width="300dp"
             android:layout_height="wrap_content"
             android:id="@+id/sp_motivo_termino_contrato"
             android:layout_gravity="left"
