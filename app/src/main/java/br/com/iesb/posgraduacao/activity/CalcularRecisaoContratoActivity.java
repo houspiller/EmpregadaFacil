@@ -1,7 +1,9 @@
 package br.com.iesb.posgraduacao.activity;
 
+import android.app.AlertDialog;
 import android.app.DatePickerDialog;
 import android.app.Dialog;
+import android.content.DialogInterface;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.util.Log;
@@ -9,11 +11,16 @@ import android.view.View;
 import android.widget.*;
 import br.com.ieb.posgraduacao.activity.R;
 import br.com.iesb.posgraduacao.control.CalculoRecisaoController;
+import br.com.iesb.posgraduacao.modelo.RecisaoModel;
+import br.com.iesb.posgraduacao.modelo.RecisaoViewModel;
+import org.joda.time.format.DateTimeFormat;
+import org.joda.time.format.DateTimeFormatter;
 
 import java.util.Calendar;
 
 public class CalcularRecisaoContratoActivity extends AppCompatActivity {
 
+    private static final DateTimeFormatter dateTimeFormatter = DateTimeFormat.forPattern("dd/MM/yyyy");
     private static final int DATA_INICIO_CONTRADO_ID = 0;
     private static final int DATA_FIM_CONTRADO_ID = 1;
     private TextView tvDataInicioContrato;
@@ -23,10 +30,13 @@ public class CalcularRecisaoContratoActivity extends AppCompatActivity {
     private Spinner spMotivoTerminoContrato;
     private TextView tvPossuiFeriasVencidas;
     private TextView tvCumpriuAvisoPrevio;
+    private EditText etUltimoSalario;
     private RadioGroup rgPossuiFeriasVencidas;
     private RadioGroup rgCumpriuAvisoPrevio;
-    private Spinner spinnerDependentes;
     private CalculoRecisaoController controller;
+    private RecisaoViewModel recisaoViewModel;
+    private boolean dispensaComJustaCausa;
+    private boolean dispensaSemJustaCausa;
 
     private DatePickerDialog.OnDateSetListener pDataInicioContratoListener =
             new DatePickerDialog.OnDateSetListener() {
@@ -40,7 +50,7 @@ public class CalcularRecisaoContratoActivity extends AppCompatActivity {
                             // O mês é baseado em 0, então adiciono + 1
                             .append(dataInicioContrato.dia).append("/")
                             .append(dataInicioContrato.mes + 1).append("/")
-                            .append(dataInicioContrato.ano).append(" "));
+                            .append(dataInicioContrato.ano).append(""));
                 }
             };
 
@@ -56,7 +66,7 @@ public class CalcularRecisaoContratoActivity extends AppCompatActivity {
                             // O mês é baseado em 0, então adiciono + 1
                             .append(dataFimContrato.dia).append("/")
                             .append(dataFimContrato.mes + 1).append("/")
-                            .append(dataFimContrato.ano).append(" "));
+                            .append(dataFimContrato.ano).append(""));
                 }
             };
 
@@ -68,19 +78,13 @@ public class CalcularRecisaoContratoActivity extends AppCompatActivity {
         obterCampos();
         inicializarDatas();
         inicializarSpinnerMotivoTerminoContrato();
-        inicializarSpinnerDependente();
-    }
-
-    private void inicializarSpinnerDependente() {
-        spinnerDependentes = (Spinner) findViewById(R.id.spinner_dependentes);
-        ArrayAdapter<CharSequence> adapterDependente = ArrayAdapter.createFromResource(this, R.array.dependente_array, android.R.layout.simple_spinner_item);
-        adapterDependente.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
-        this.spinnerDependentes.setAdapter(adapterDependente);
+//        inicializarSpinnerDependente();
     }
 
     private void obterCampos() {
         tvCumpriuAvisoPrevio = (TextView) findViewById(R.id.tv_aviso_previo);
         tvPossuiFeriasVencidas = (TextView) findViewById(R.id.tv_ferias_vencidas);
+        etUltimoSalario = (EditText) findViewById(R.id.et_ultimo_salario);
         rgCumpriuAvisoPrevio = (RadioGroup) findViewById(R.id.radio_group_aviso_previo);
         rgPossuiFeriasVencidas = (RadioGroup) findViewById(R.id.radio_group_ferias_vencidas);
     }
@@ -109,6 +113,8 @@ public class CalcularRecisaoContratoActivity extends AppCompatActivity {
                         rgPossuiFeriasVencidas.setVisibility(View.VISIBLE);
                         tvCumpriuAvisoPrevio.setVisibility(View.VISIBLE);
                         rgCumpriuAvisoPrevio.setVisibility(View.VISIBLE);
+                        dispensaSemJustaCausa = true;
+                        dispensaComJustaCausa = false;
                         break;
 
                     case 2:
@@ -117,14 +123,8 @@ public class CalcularRecisaoContratoActivity extends AppCompatActivity {
                         rgPossuiFeriasVencidas.setVisibility(View.VISIBLE);
                         tvCumpriuAvisoPrevio.setVisibility(View.GONE);
                         rgCumpriuAvisoPrevio.setVisibility(View.GONE);
-                        break;
-
-                    case 3:
-                        Log.d("Spinner", "Término de contrato de experiência");
-                        tvPossuiFeriasVencidas.setVisibility(View.GONE);
-                        rgPossuiFeriasVencidas.setVisibility(View.GONE);
-                        tvCumpriuAvisoPrevio.setVisibility(View.GONE);
-                        rgCumpriuAvisoPrevio.setVisibility(View.GONE);
+                        dispensaComJustaCausa = true;
+                        dispensaSemJustaCausa = false;
                         break;
 
                     default:
@@ -185,7 +185,7 @@ public class CalcularRecisaoContratoActivity extends AppCompatActivity {
                         // O mês é baseado em 0, então adiciono + 1
                         .append(dataInicioContrato.dia).append("/")
                         .append(dataInicioContrato.mes + 1).append("/")
-                        .append(dataInicioContrato.ano).append(" "));
+                        .append(dataInicioContrato.ano).append(""));
     }
 
     private void atualizarCampoDataFimContrato() {
@@ -194,7 +194,7 @@ public class CalcularRecisaoContratoActivity extends AppCompatActivity {
                         // O mês é baseado em 0, então adiciono + 1
                         .append(dataFimContrato.dia).append("/")
                         .append(dataFimContrato.mes + 1).append("/")
-                        .append(dataFimContrato.ano).append(" "));
+                        .append(dataFimContrato.ano).append(""));
     }
 
     /**
@@ -212,6 +212,47 @@ public class CalcularRecisaoContratoActivity extends AppCompatActivity {
                         dataFimContrato.ano, dataFimContrato.mes, dataFimContrato.dia);
         }
         return null;
+    }
+
+    public void calculaRecisaoClick(View view) {
+        recisaoViewModel = obterViewModel();
+        controller = new CalculoRecisaoController(recisaoViewModel);
+        RecisaoModel recisaoModel = controller.realizar_calculo();
+        exibirResultado(recisaoModel);
+    }
+
+    private RecisaoViewModel obterViewModel() {
+        RecisaoViewModel recisaoViewModel = new RecisaoViewModel();
+
+        recisaoViewModel.setUltimoSalario(Double.parseDouble(etUltimoSalario.getText().toString()));
+        recisaoViewModel.setPossuiFeriasVencidas(((RadioButton) findViewById(R.id.rb_ferias_vencidas_sim)).isChecked());
+        recisaoViewModel.setDispensaComJustaCausa(dispensaComJustaCausa);
+
+        if (dispensaComJustaCausa) {
+            recisaoViewModel.setCumpriuAvisoPrevio(false);
+
+        } else {
+            recisaoViewModel.setCumpriuAvisoPrevio(((RadioButton) findViewById(R.id.rb_aviso_previo_sim)).isChecked());
+        }
+
+        recisaoViewModel.setDispensaSemJustaCausa(dispensaSemJustaCausa);
+        recisaoViewModel.setDataInicioContrato(dateTimeFormatter.parseDateTime(tvDataInicioContrato.getText().toString()));
+        recisaoViewModel.setDataTerminoContrato(dateTimeFormatter.parseDateTime(tvDataFimContrato.getText().toString()));
+
+        return recisaoViewModel;
+    }
+
+    private void exibirResultado(RecisaoModel recisaoModel) {
+        final AlertDialog.Builder msgDialog = new AlertDialog.Builder(this);
+        msgDialog.setTitle("Resultado");
+        msgDialog.setMessage(controller.formatarTexto(recisaoModel));
+        msgDialog.setNeutralButton("OK", new DialogInterface.OnClickListener() {
+            @Override
+            public void onClick(DialogInterface dialogInterface, int i) {
+                dialogInterface.dismiss();
+            }
+        });
+        msgDialog.show();
     }
 
     public class DataInicioContrato {
