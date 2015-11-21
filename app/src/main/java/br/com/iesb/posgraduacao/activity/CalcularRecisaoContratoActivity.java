@@ -91,7 +91,7 @@ public class CalcularRecisaoContratoActivity extends AppCompatActivity {
 
     private void inicializarSpinnerMotivoTerminoContrato() {
         spMotivoTerminoContrato = (Spinner) findViewById(R.id.sp_motivo_termino_contrato);
-        ArrayAdapter<CharSequence> adapter = ArrayAdapter.createFromResource(this, R.array.motivo_termino_trabalho_array, android.R.layout.simple_spinner_item);
+        ArrayAdapter<CharSequence> adapter = ArrayAdapter.createFromResource(this, R.array.motivo_termino_trabalho_array, R.layout.spinner_layout);
         adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
 
         spMotivoTerminoContrato.setAdapter(adapter);

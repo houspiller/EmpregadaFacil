@@ -98,11 +98,13 @@
         <RadioButton android:id="@+id/rb_ferias_vencidas_sim"
                      android:layout_width="wrap_content"
                      android:layout_height="wrap_content"
+                     android:textSize="14sp"
                      android:text="@string/sim"/>
 
         <RadioButton android:id="@+id/rb_ferias_vencidas_nao"
                      android:layout_width="wrap_content"
                      android:layout_height="wrap_content"
+                     android:textSize="14sp"
                      android:text="@string/nao"
                      android:checked="true"/>
     </RadioGroup>
@@ -126,11 +128,13 @@
         <RadioButton android:id="@+id/rb_aviso_previo_sim"
                      android:layout_width="wrap_content"
                      android:layout_height="wrap_content"
+                     android:textSize="14sp"
                      android:text="@string/sim"/>
 
         <RadioButton android:id="@+id/rb_aviso_previo_nao"
                      android:layout_width="wrap_content"
                      android:layout_height="wrap_content"
+                     android:textSize="14sp"
                      android:text="@string/nao"
                      android:checked="true"/>
     </RadioGroup>

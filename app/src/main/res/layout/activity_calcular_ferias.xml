@@ -18,6 +18,7 @@
             android:text="@string/salario_bruto"
             android:id="@+id/tv_salario_bruto"
             android:layout_column="0"
+            android:textSize="14sp"
             android:layout_marginTop="10dp"/>
 
     <EditText
@@ -34,7 +35,8 @@
             android:layout_height="wrap_content"
             android:textAppearance="?android:attr/textAppearanceLarge"
             android:text="@string/vl_medio_horas_extras"
-            android:id="@+id/tv_horas_extras"/>
+            android:textSize="14sp"/>
+    android:id="@+id/tv_horas_extras"/>
 
     <EditText
             android:layout_width="wrap_content"
@@ -42,7 +44,8 @@
             android:inputType="number"
             android:ems="10"
             android:id="@+id/et_horas_extras"
-            android:hint="Ex: 8"/>
+            android:textSize="14sp"/>
+    android:hint="Ex: 8"/>
 
     <!--Cálculo dependentes-->
     <TextView
@@ -51,12 +54,14 @@
             android:textAppearance="?android:attr/textAppearanceLarge"
             android:text="@string/dependentes"
             android:id="@+id/tv_quantidade_dependente"
+            android:textSize="14sp"
             android:layout_marginTop="10dp"/>
 
     <Spinner
             android:layout_width="60dp"
             android:layout_height="wrap_content"
             android:id="@+id/spinner_dependentes"
+            android:textSize="5sp"
             android:layout_gravity="left"/>
 
     <!-- Dias de férias -->
@@ -66,6 +71,7 @@
             android:textAppearance="?android:attr/textAppearanceLarge"
             android:text="@string/dias_de_ferias"
             android:id="@+id/tv_quantidade_dias_ferias"
+            android:textSize="14sp"
             android:layout_marginTop="10dp"/>
 
     <Spinner
@@ -80,6 +86,7 @@
             android:layout_height="wrap_content"
             android:textAppearance="?android:attr/textAppearanceLarge"
             android:text="@string/abono_pecuniario"
+            android:textSize="14sp"
             android:id="@+id/tv_abono_pecuniario"
             android:layout_marginTop="10dp"/>
 
@@ -92,11 +99,13 @@
         <RadioButton android:id="@+id/rb_abono_pecuniario_sim"
                      android:layout_width="wrap_content"
                      android:layout_height="wrap_content"
+                     android:textSize="14sp"
                      android:text="@string/sim"/>
 
         <RadioButton android:id="@+id/rb_abono_pecuniario_nao"
                      android:layout_width="wrap_content"
                      android:layout_height="wrap_content"
+                     android:textSize="14sp"
                      android:text="@string/nao"
                      android:checked="true"/>
     </RadioGroup>
@@ -108,6 +117,7 @@
             android:textAppearance="?android:attr/textAppearanceLarge"
             android:text="@string/adiantamento_13"
             android:id="@+id/tv_adiantamento_13"
+            android:textSize="14sp"
             android:layout_marginTop="10dp"/>
 
     <RadioGroup xmlns:android="http://schemas.android.com/apk/res/android"
@@ -118,12 +128,14 @@
         <RadioButton android:id="@+id/rb_adiantamento_13_sim"
                      android:layout_width="wrap_content"
                      android:layout_height="wrap_content"
+                     android:textSize="14sp"
                      android:text="@string/sim"/>
 
         <RadioButton android:id="@+id/rb_adiantamento_13_nao"
                      android:layout_width="wrap_content"
                      android:layout_height="wrap_content"
                      android:text="@string/nao"
+                     android:textSize="14sp"
                      android:checked="true"/>
     </RadioGroup>
 

@@ -136,13 +136,13 @@ public class CalcularFeriasActivity extends AppCompatActivity {
             listDiasFerias.add(String.valueOf(i));
         }
 
-        ArrayAdapter<String> adapterDependente = new ArrayAdapter<String>(this, android.R.layout.simple_spinner_item, listDiasFerias);
+        ArrayAdapter<String> adapterDependente = new ArrayAdapter<String>(this, R.layout.spinner_layout, listDiasFerias);
         this.spinnerFerias.setAdapter(adapterDependente);
     }
 
     private void carregarSpinnerDependentes() {
         spinnerDependentes = (Spinner) findViewById(R.id.spinner_dependentes);
-        ArrayAdapter<CharSequence> adapterDependente = ArrayAdapter.createFromResource(this, R.array.dependente_array, android.R.layout.simple_spinner_item);
+        ArrayAdapter<CharSequence> adapterDependente = ArrayAdapter.createFromResource(this, R.array.dependente_array, R.layout.spinner_layout);
         adapterDependente.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
         this.spinnerDependentes.setAdapter(adapterDependente);
     }
